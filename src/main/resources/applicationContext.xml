@@ -23,18 +23,18 @@
         <!--</route>-->
 
 
-        <!--<route id="test">-->
-            <!--<from uri="activemq:queue:inbox"/>-->
-            <!--<log message="Routing message from inbox to outbox queue with data ${body}"/>-->
-            <!--<to uri="activemq:queue:outbox"/>-->
-        <!--</route>-->
-
-        <route id="test1">
-            <from uri="activemq-data:queue:inbox"/>
+        <route id="test">
+            <from uri="activemq:queue:inbox"/>
             <log message="Routing message from inbox to outbox queue with data ${body}"/>
-            <to uri="activemq-data:queue:outbox"/>
-            <to uri="file://temp/activemq/?fileExist=Append&amp;fileName=queue-${date:now:yyyyMMdd}.txt" />
+            <to uri="activemq:queue:outbox"/>
         </route>
+
+        <!--<route id="test1">-->
+            <!--<from uri="activemq-data:queue:inbox"/>-->
+            <!--<log message="Routing message from inbox to outbox queue with data ${body}"/>-->
+            <!--<to uri="activemq-data:queue:outbox"/>-->
+            <!--<to uri="file://temp/activemq/?fileExist=Append&amp;fileName=queue-${date:now:yyyyMMdd}.txt" />-->
+        <!--</route>-->
 
 
 
@@ -43,10 +43,10 @@
     </camelContext>
 
 
-    <bean id="activemq-data" class="org.apache.activemq.camel.component.ActiveMQComponent">
-        <property name="brokerURL" value="${amq.brokerurl}" />
-        <property name="userName" value="${amq.user}" />
-        <property name="password" value="${amq.password}" />
-        <property name="concurrentConsumers" value="2" />
-    </bean>
+    <!--<bean id="activemq-data" class="org.apache.activemq.camel.component.ActiveMQComponent">-->
+        <!--<property name="brokerURL" value="${amq.brokerurl}" />-->
+        <!--<property name="userName" value="${amq.user}" />-->
+        <!--<property name="password" value="${amq.password}" />-->
+        <!--<property name="concurrentConsumers" value="2" />-->
+    <!--</bean>-->
 </beans>
