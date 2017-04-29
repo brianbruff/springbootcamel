@@ -29,15 +29,6 @@
             <to uri="activemq:queue:outbox"/>
         </route>
 
-        <!--<route id="test1">-->
-            <!--<from uri="activemq-data:queue:inbox"/>-->
-            <!--<log message="Routing message from inbox to outbox queue with data ${body}"/>-->
-            <!--<to uri="activemq-data:queue:outbox"/>-->
-            <!--<to uri="file://temp/activemq/?fileExist=Append&amp;fileName=queue-${date:now:yyyyMMdd}.txt" />-->
-        <!--</route>-->
-
-
-
 
 
     </camelContext>
