@@ -1,7 +1,7 @@
 package net.bk;
 
 
-import org.apache.camel.language.Bean;
+//import org.apache.camel.language.Bean;
 import org.springframework.stereotype.Component;
 
 @Component("childBean")
