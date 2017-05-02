@@ -1,6 +1,9 @@
 package net.bk;
 
 
+import net.bk.data.Person;
+import net.bk.data.PersonRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -8,25 +11,16 @@ import org.springframework.stereotype.Component;
 public class SampleBean{
 
 
-    //@Autowired
-   // PersonRepo personRepo;
+    @Autowired
+    PersonRepo personRepo;
 
-   // private final MongoDbFactory mongo;
-
-//    @Autowired
-//    public SampleBean(MongoDbFactory mongo) {
-//        this.mongo = mongo;
-//    }
 
     @Value("${greeting}")
     private String say;
 
     public String saySomething() {
-      //  DB db =mongo.getDb("DemoSpring");
 
-     //   DBCollection collection = db.getCollection("People");
-
-       // Page<Person> personPage = personRepo.findAll(new PageRequest(0,10));
+        this.personRepo.save(new Person(say,40));
 
         return say;
     }
