@@ -10,19 +10,7 @@
 
     <!-- Camel Context -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
-        <!--<camel:routeBuilder ref="myRouteBuilder"/>-->
-
-        <!--<route id="timer-to-console">-->
-            <!--<from uri="timer://foo?fixedRate=true&amp;period={{timer.period}}"/>-->
-            <!--<transform>-->
-                <!--<method bean="myBean" method="saySomething">-->
-                <!--</method>-->
-
-            <!--</transform>-->
-            <!--<to uri="stream:out"/>-->
-        <!--</route>-->
-
-        <route id="timer-to-console">
+        <route id="rss-to-file">
             <from uri="rss:{{rss.url}}"/>
             <marshal> <rss/> </marshal>
             <to uri="stream:out"/>
