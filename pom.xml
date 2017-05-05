@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.bk</groupId>
-	<artifactId>demospring</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>transparency</artifactId>
+	<version>1.0.0-RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>demospring</name>
@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<properties>
@@ -49,7 +49,6 @@
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-rss</artifactId>
 			<version>${camel.version}</version>
-			<!-- use the same version as your Camel core version -->
 		</dependency>
 
 	</dependencies>

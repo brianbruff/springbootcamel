@@ -6,15 +6,13 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-    <bean class="net.bk.SampleBean" id="myBean" />
-
     <!-- Camel Context -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <route id="rss-to-file">
-            <from uri="rss:{{rss.url}}"/>
+            <from uri="rss:{{rss.url}}{{rss.options}}"/>
             <marshal> <rss/> </marshal>
             <to uri="stream:out"/>
-            <to uri="file://d:/temp/rss.xml" />
+            <to uri="file://rss" />
         </route>
     </camelContext>
 </beans>
