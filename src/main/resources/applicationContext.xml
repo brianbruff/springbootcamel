@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:camel="http://camel.apache.org/schema/spring"
-
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
@@ -11,27 +9,41 @@
 
     <!-- Camel Context -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <dataFormats>
+            <json id="tradeObj" library="Jackson" unmarshalTypeName="net.bk.data.Trade" enableFeatures="WRAP_ROOT_VALUE"  />
+        </dataFormats>
         <!--<camel:routeBuilder ref="myRouteBuilder"/>-->
 
-        <!--<route id="timer-to-console">-->
+        <!--<route id="timer-to-file">-->
             <!--<from uri="timer://foo?fixedRate=true&amp;period={{timer.period}}"/>-->
             <!--<transform>-->
                 <!--<method bean="myBean" method="saySomething">-->
                 <!--</method>-->
             <!--</transform>-->
-            <!--<to uri="stream:out"/>-->
+            <!--<to uri="stream:out"/> //todo:   -->
         <!--</route>-->
 
 
-        <route id="test">
+        <route id="fromQueue">
             <from uri="activemq:queue:inbox"/>
-            <log message="Routing message from inbox to outbox queue with data ${body}"/>
-            <to uri="activemq:queue:outbox"/>
+            <log message="Routing message: ${body}."/>
+            <unmarshal ref="tradeObj" />
+            <log message="Unmarshaled: ${body}, id:${body.id}"/>
+            <aggregate strategyRef="tradeAggregrator" completionInterval="30000">
+                <correlationExpression>
+                    <simple>id</simple>
+                </correlationExpression>
+                <log message="Sending order list to dss component ${body}"/>
+                <to uri="mock://list"/>
+            </aggregate>
+
         </route>
 
 
-
     </camelContext>
+
+    <bean id="tradeAggregrator" class="net.bk.aggregrators.TradeAggregrator"/>
 
 
     <!--<bean id="activemq-data" class="org.apache.activemq.camel.component.ActiveMQComponent">-->
